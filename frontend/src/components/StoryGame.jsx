@@ -15,7 +15,7 @@ function StoryGame({story, onNewStory}) {
     }, [story])
 
     useEffect(() => {
-        if (currentNodeId && story && story.all_nodes) {
+        if (currentNodeId !== null && currentNodeId !== undefined && story && story.all_nodes) {
             const node = story.all_nodes[currentNodeId]
 
             setCurrentNode(node)
@@ -36,8 +36,10 @@ function StoryGame({story, onNewStory}) {
     }
 
     const restartStory = () => {
-        if (story && story.root_node) {
-            setCurrentNodeId(story.root_node.id)
+        if (story && story.root_node && story.root_node.id !== null && story.root_node.id !== undefined) {
+            // Force a state transition even if the id is unchanged.
+            setCurrentNodeId(null)
+            setTimeout(() => setCurrentNodeId(story.root_node.id), 0)
         }
     }
 
