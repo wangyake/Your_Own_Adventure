@@ -18,7 +18,7 @@ class StoryGenerator:
         return ChatOpenAI(
             api_key=os.getenv("DASHSCOPE_API_KEY"),
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
-            model="deepseek-v3.2",
+            model="qwen-flash",
             max_tokens = 100
 )
 
